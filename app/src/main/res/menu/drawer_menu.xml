@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/group_1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/online_news"
+            android:icon="@drawable/worldwide"
+            android:title="@string/online_string" />
+        <item
+            android:id="@+id/offline_news"
+            android:icon="@drawable/newspaper"
+            android:title="@string/offline_string" />
+    </group>
+    <group
+        android:id="@+id/group_2"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/settings_news"
+            android:icon="@drawable/settings"
+            android:title="@string/settings_string" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/pen"
+            android:title="@string/about_string" />
+        <item
+            android:id="@+id/exit_news"
+            android:icon="@drawable/exit"
+            android:title="@string/exit_string" />
+
+    </group>
+
+
+</menu>
