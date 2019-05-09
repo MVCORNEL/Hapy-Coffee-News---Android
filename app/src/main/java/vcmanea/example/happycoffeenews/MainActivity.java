@@ -10,12 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements OnDownloadComplete {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete, ProcessingJSON.OnDataAvailable {
     private static final String TAG = "MainActivity";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
+    ProcessingJSON processingJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +44,30 @@ public class MainActivity extends AppCompatActivity implements OnDownloadComplet
                 return true;
             }
         });
-        //****************  DOWNLOAD JSON DATA--PASSING THE LISTENER IN THE CONSTRUCTOR-- FOR THAT PARTICULAT CASE IS BETTER TO PASS THE CALL BACK INTERFACE IN CONSTRUCOR THOUGH WE CAN SET IT LIKE THE BUTTONDS CALLBACS ******************//
+        //****************  DOWNLOAD RAW DATA--PASSING THE LISTENER IN THE CONSTRUCTOR-- FOR THAT PARTICULAT CASE IS BETTER TO PASS THE CALL BACK INTERFACE IN CONSTRUCOR THOUGH WE CAN SET IT LIKE THE BUTTONDS CALLBACS ******************//
         GetRawData getRawData = new GetRawData(this);
         getRawData.execute("https://newsapi.org/v2/top-headlines?country=gb&category=technology&apiKey=09dbc3fd2b4e43e4900b114f60eaa190");
+        //**********************************//
+         processingJSON=new ProcessingJSON(this);
 
     }
-
-    //****************CODE WHICH WILL NE EXECUTED AFTER THE NOTIFY WHEN DATA HAS BEEN DOWNLOADED-THIS HAPPENS IN POST EXECUTE-CALLBACK PATTERN******************//
+    //****************CODE WHICH WILL NE EXECUTED AFTER THE NOTIFY WHEN DATA HAS BEEN DOWNLOADED-THIS HAPPENS IN POST EXECUTE-CALLBACK PATTERN-->******************//
     public void onDownloadComplete(String data, DownloadStatus status) {
         if (status == DownloadStatus.OK) {
             Log.d(TAG, "onDownloadComplete: data is" + data);
+            processingJSON.execute(data);
         } else {
             Log.e(TAG, "onDownloadComplete: failed with status" + status);
         }
 
     }
-
-
+    ////
+    @Override
+    public void onDataAvailable(List<OnlineNews> processedNews, DownloadStatus status) {
+        if (status == DownloadStatus.OK) {
+            Log.d(TAG, "onDataAvailable: list size  "+  processedNews.size() );
+        } else {
+            Log.e(TAG, "onDataAvailable: failed with status" + status);
+        }
+    }
 }

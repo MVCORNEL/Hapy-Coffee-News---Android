@@ -1,7 +1,6 @@
 package vcmanea.example.happycoffeenews;
 
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -11,11 +10,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-interface OnDownloadComplete{
-    void onDownloadComplete(String data, DownloadStatus status);
-}
-
 
 
 enum DownloadStatus {
@@ -27,21 +21,27 @@ enum DownloadStatus {
 }
 
 class GetRawData extends AsyncTask<String, Void, String> {
-
     private static final String TAG = "GetRawData";
+
+    interface OnDownloadComplete {
+        void onDownloadComplete(String data, DownloadStatus status);
+    }
+
+
     private DownloadStatus mDownloadStatus;
     private OnDownloadComplete mCallBack;
 
     GetRawData(OnDownloadComplete downloadComplete) {
         mDownloadStatus = DownloadStatus.IDLE;
-        mCallBack=downloadComplete;
+        mCallBack = downloadComplete;
     }
 
+    //**************** INFORM THE CALLER THE DOWNLOAD IS DONE - POSSIBLY RETURN NULL IF THERE WAS AN ERROR******************//
     @Override
     protected void onPostExecute(String s) {
         Log.d(TAG, "onPostExecute: argument " + s);
-        if(mCallBack!=null){
-            mCallBack.onDownloadComplete(s,mDownloadStatus);
+        if (mCallBack != null) {
+            mCallBack.onDownloadComplete(s, mDownloadStatus);
         }
     }
 
