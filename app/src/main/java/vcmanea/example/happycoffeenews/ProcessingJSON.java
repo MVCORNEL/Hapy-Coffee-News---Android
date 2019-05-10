@@ -10,10 +10,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessingJSON extends AsyncTask<String,Void, List<OnlineNews>> {
+public class ProcessingJSON extends AsyncTask<String, Void, List<OnlineNews>> {
     private static final String TAG = "ProcessingJSON";
-    interface OnDataAvailable{
-        void onDataAvailable(List<OnlineNews> processedNews,DownloadStatus status);
+
+    interface OnDataAvailable {
+        void onDataAvailable(List<OnlineNews> processedNews, DownloadStatus status);
     }
 
     private OnDataAvailable mOnDataAvailable;
@@ -21,14 +22,15 @@ public class ProcessingJSON extends AsyncTask<String,Void, List<OnlineNews>> {
     private DownloadStatus status;
 
 
-     ProcessingJSON(OnDataAvailable onDataAvailable) {
+    ProcessingJSON(OnDataAvailable onDataAvailable) {
         mOnDataAvailable = onDataAvailable;
     }
+
     //**************** INFORM THE CALLER THE PROCESSING IS DONE - POSSIBLY RETURN NULL IF THERE WAS AN ERROR******************//
     @Override
     protected void onPostExecute(List<OnlineNews> onlineNews) {
         Log.d(TAG, "onPostExecute: data processed");
-        if (mOnDataAvailable!=null) {
+        if (mOnDataAvailable != null) {
             mOnDataAvailable.onDataAvailable(onlineNews, status);
         }
     }

@@ -1,7 +1,10 @@
 package vcmanea.example.happycoffeenews;
 
-public class OnlineNews {
+import java.util.ArrayList;
+import java.util.List;
 
+public class OnlineNews {
+    private static List<OnlineNews> myListNews;
     private String mTitle;
     private String mDescription;
     private String mContent;
@@ -36,6 +39,14 @@ public class OnlineNews {
         return mImageURl;
     }
 
+
+    public static List<OnlineNews> getCountryList() {
+        if (myListNews == null) {
+            myListNews = new ArrayList<>();
+        }
+        return myListNews;
+
+    }
 
     @Override
     public String toString() {
