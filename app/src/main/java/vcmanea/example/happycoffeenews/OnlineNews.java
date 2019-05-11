@@ -40,7 +40,7 @@ public class OnlineNews {
     }
 
 
-    public static List<OnlineNews> getCountryList() {
+    public static List<OnlineNews> getNewsList() {
         if (myListNews == null) {
             myListNews = new ArrayList<>();
         }

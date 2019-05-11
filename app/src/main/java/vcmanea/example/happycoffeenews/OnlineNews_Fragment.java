@@ -34,10 +34,9 @@ public class OnlineNews_Fragment extends Fragment {
     private void initUI() {
         mRecyclerViev = mHolderView.findViewById(R.id.online_recycler_view);
         mRecyclerViev.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
-
-        mOnlineRecyclerViewAdapter = new OnlineRecyclerViewAdapter(getContext(), OnlineNews.getCountryList());
+        mOnlineRecyclerViewAdapter = new OnlineRecyclerViewAdapter(getContext(), OnlineNews.getNewsList(),(MainActivity)getActivity());
         mRecyclerViev.setAdapter(mOnlineRecyclerViewAdapter);
-        mOnlineRecyclerViewAdapter.notifyDataSetChanged();
+
 
     }
 
