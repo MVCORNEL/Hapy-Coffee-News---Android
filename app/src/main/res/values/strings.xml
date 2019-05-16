@@ -9,5 +9,14 @@
     <string name="open_toggle">Open</string>"
     <string name="close_toggle">Close</string>"
 
+    <string name="about_copyright">Copyright \u00a9 2019 manea.valentin.cornel</string>
+    <string name="about_weblink">Instructions available at https://www.udemy.com/master-android-7-nougat-java-app-development-step-by-step.com</string>
+    <string name="about_email"><![CDATA[For support, emai <app name> at manea.valentin.cornel@gmail.com]]></string>
+    <string name="about_credits_first">Image derievd from <b> analog clock</b> art openclipart.org by <b>Anonymouys</b>></string>
+    <string name="about_credits_second">Icons made by <b> drawer menu </b> art "https://www.flaticon.com/authors/smalllikeart" by <b>smalllikeart</b>></string>
+    <string name="about_credits_third">Vectors made by <b> icon vector,arrow vector </b> art "https://www.freepik.com/free-photos-vectors" by <b>rawpixel.com</b>></string>
+    <string name="about_credits_fourth">News provided by Newsapi,  https://newsapi.org/termsby</string>
+    <string name="start_about_dialog">Start About Dialog</string>
+
 
 </resources>

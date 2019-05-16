@@ -33,7 +33,13 @@ public class OnlineNews_Fragment extends Fragment {
 
     private void initUI() {
         mRecyclerViev = mHolderView.findViewById(R.id.online_recycler_view);
-        mRecyclerViev.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+        if(mHolderView.findViewById(R.id.fragment_online_portrait)!=null) {
+            mRecyclerViev.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+        }
+        else{
+            mRecyclerViev.setLayoutManager(new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false));
+
+        }
         mOnlineRecyclerViewAdapter = new OnlineRecyclerViewAdapter(getContext(), OnlineNews.getNewsList(),(MainActivity)getActivity());
         mRecyclerViev.setAdapter(mOnlineRecyclerViewAdapter);
 

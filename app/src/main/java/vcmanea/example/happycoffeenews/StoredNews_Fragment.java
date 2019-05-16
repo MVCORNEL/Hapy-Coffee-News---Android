@@ -28,17 +28,15 @@ public class StoredNews_Fragment extends Fragment {
         return mHolderView;
     }
 
-
-
-
-
     private void initUI(){
         mRecyclerView= mHolderView.findViewById(R.id.storage_recycle_view);
-        adapter=new StoredRecyclerViewAdapter(getContext(),StoredNewsDBHelper.getAllData());
+        adapter=new StoredRecyclerViewAdapter(getContext(),StoredNewsDBHelper.getAllData(),(MainActivity)getActivity());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.VERTICAL,false));
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
+
 
 
 }

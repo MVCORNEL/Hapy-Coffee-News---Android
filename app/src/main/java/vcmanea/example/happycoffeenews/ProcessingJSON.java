@@ -49,11 +49,10 @@ public class ProcessingJSON extends AsyncTask<String, Void, List<OnlineNews>> {
 
                 String title = jsonNews.getString("title");
                 String descriptiom = jsonNews.getString("description");
-                String content = jsonNews.getString("content");
                 String url = jsonNews.getString("url");
                 String urlToImage = jsonNews.getString("urlToImage");
 
-                OnlineNews onlineNewsObject = new OnlineNews(title, descriptiom, content, url, urlToImage);
+                OnlineNews onlineNewsObject = new OnlineNews(title, descriptiom, url, urlToImage);
                 mNewsList.add(onlineNewsObject);
             }
             status = DownloadStatus.OK;

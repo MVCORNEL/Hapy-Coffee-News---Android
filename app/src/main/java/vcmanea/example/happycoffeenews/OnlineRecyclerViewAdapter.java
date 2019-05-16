@@ -2,9 +2,9 @@ package vcmanea.example.happycoffeenews;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,17 +20,18 @@ public class OnlineRecyclerViewAdapter extends RecyclerView.Adapter<OnlineRecycl
     private static final String TAG = "OnlineRecyclerViewAdapt";
     private List<OnlineNews> mNewsList;
     private Context mContext;
-    private  OnlineNewsListener mOnlineNewsListener;
+    private OnlineNewsListener mOnlineNewsListener;
 
-    interface OnlineNewsListener{
+    interface OnlineNewsListener {
         void onClick(int i);
+
         void onLongClick(int i);
     }
 
-    public OnlineRecyclerViewAdapter(Context context, List<OnlineNews> onlineNewsList,OnlineNewsListener onlineNewsListener) {
+    public OnlineRecyclerViewAdapter(Context context, List<OnlineNews> onlineNewsList, OnlineNewsListener onlineNewsListener) {
         this.mNewsList = onlineNewsList;
         mContext = context;
-        mOnlineNewsListener=onlineNewsListener;
+        mOnlineNewsListener = onlineNewsListener;
     }
 
     @NonNull
@@ -46,19 +47,26 @@ public class OnlineRecyclerViewAdapter extends RecyclerView.Adapter<OnlineRecycl
         Log.d(TAG, "onBindViewHolder: called by the layout manager when it want new data in an existing row");
 
 
-        viewHolderOnline.cardView.setOnClickListener(new View.OnClickListener() {
+        viewHolderOnline.imageCardViewOnline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mOnlineNewsListener!=null)
+                if (mOnlineNewsListener != null)
                     mOnlineNewsListener.onClick(viewHolderOnline.getAdapterPosition());
             }
         });
 
-        viewHolderOnline.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+        viewHolderOnline.downloadImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(mOnlineNewsListener!=null){
-                    mOnlineNewsListener.onLongClick(viewHolderOnline.getAdapterPosition());
+                if (mOnlineNewsListener != null) {
+                    Snackbar.make(v, "You are sure you want to store this?", Snackbar.LENGTH_INDEFINITE).setAction("Yes", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnlineNewsListener.onLongClick(viewHolderOnline.getAdapterPosition());
+
+                        }
+                    }).show();
+
                 }
                 return true;
             }
@@ -83,6 +91,7 @@ public class OnlineRecyclerViewAdapter extends RecyclerView.Adapter<OnlineRecycl
     public static class ViewHolderOnline extends RecyclerView.ViewHolder {
         private static final String TAG = "ViewHolderOnline";
         CardView cardView;
+        ImageView downloadImage;
         ImageView imageCardViewOnline;
         TextView titleCardViewOnline;
 
@@ -92,7 +101,7 @@ public class OnlineRecyclerViewAdapter extends RecyclerView.Adapter<OnlineRecycl
             cardView=itemView.findViewById(R.id.cardView);
             imageCardViewOnline = itemView.findViewById(R.id.news_img_id);
             titleCardViewOnline = itemView.findViewById(R.id.news_title_id);
-
+            downloadImage=itemView.findViewById(R.id.download_image_view);
         }
     }
 

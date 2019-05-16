@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="CountryValue">
+        <item>ro</item>
+        <item>gb</item>
+        <item>us</item>
+        <item>ru</item>
+        <item>de</item>
+        <item>fr</item>
+        <item>kr</item>
+        <item>jp</item>
+    </string-array>
+
+    <string-array name="CountryEntry">
+        <item>ro</item>
+        <item>gb</item>
+        <item>us</item>
+        <item>ru</item>
+        <item>de</item>
+        <item>fr</item>
+        <item>kr</item>
+        <item>jp</item>
+    </string-array>
+
+
+    <string-array name="CategoryValue">
+        <item>sports</item>
+        <item>business</item>
+        <item>entertainment</item>
+        <item>health</item>
+        <item>science</item>
+        <item>technology</item>
+    </string-array>
+
+    <string-array name="CategoryEntry">
+        <item>sports</item>
+        <item>business</item>
+        <item>entertainment</item>
+        <item>health</item>
+        <item>science</item>
+        <item>technology</item>
+    </string-array>
+
+
+</resources>
