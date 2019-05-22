@@ -19,7 +19,7 @@ public class UriBuilder {
      UriBuilder(Context context){
         mContext=context;
         mSharedPreferences=PreferenceManager.getDefaultSharedPreferences(mContext);
-        mCountry = mSharedPreferences.getString(LANGUAGE_LIST, "en");
+        mCountry = mSharedPreferences.getString(LANGUAGE_LIST, "ro");
         mCategory=mSharedPreferences.getString(CATEGORY_LIST,"science");
     }
 

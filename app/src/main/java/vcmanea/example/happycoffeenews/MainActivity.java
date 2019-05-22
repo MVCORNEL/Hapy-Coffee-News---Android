@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
                     case R.id.settings_news:
                         addSettingsFragment();
                         break;
+                    case R.id.exit_news:
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(1);
+                        break;
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -111,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
             mGetRawData = new GetRawData(this);
             mGetRawData.execute(createUrl());
             mProcessingJSON = new ProcessingJSON(this);
+            mNavigationView.setCheckedItem(R.id.online_news);
         }
     }
 
@@ -209,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
     }
 
     //****************FRAGMENT TRANSACTIONS******************//
-    //****************STORAGE FRAGMENT******************//
+    //****************ONLINE  FRAGMENT******************//
     private void addFragmentOnline() {
         mFragmentOnline = new OnlineNews_Fragment();
         mFragmentManager = getSupportFragmentManager();
@@ -310,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
         return (networkInfo != null && networkInfo.isConnected());
 
     }
+
 
     //****************CALLBACKS*****************//
     @Override
